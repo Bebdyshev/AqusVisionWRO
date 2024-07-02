@@ -1,0 +1,78 @@
+/* Navbar.css */
+
+/* General Styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  nav .title {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  nav .menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  nav .menu span {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  nav ul li {
+    margin-left: 1.5rem;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  nav ul li a.active {
+    font-weight: bold;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    nav .menu {
+      display: flex;
+    }
+  
+    nav ul {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      background-color: #333;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+  
+    nav ul.open {
+      transform: translateY(0);
+    }
+  
+    nav ul li {
+      margin: 0;
+      text-align: center;
+      padding: 1rem 0;
+    }
+  }
+  

@@ -1,0 +1,18 @@
+/* Statistics.css */
+.statistics-container {
+    display: flex;
+  }
+  
+  .charts-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    width: 40%; /* Adjust this value to reduce the width of the charts container */
+  }
+  
+  .chart-container {
+    width: 320px;
+    margin: 25px;
+    height: 200px; /* Adjust as needed */
+  }
+
+  

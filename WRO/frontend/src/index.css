@@ -1,0 +1,11 @@
+/* index.css */
+@import url('https://unpkg.com/leaflet/dist/leaflet.css');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.leaflet-control {
+    display: none;
+}
