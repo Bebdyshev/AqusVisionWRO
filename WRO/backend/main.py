@@ -1,13 +1,14 @@
-# main.py
 import serial
 import threading
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from config import app, db
 from models import DataSet
 from datetime import datetime
+from aiModel import generate
+import json
+import random
 
-# Serial communication thread function
 def serial_reader():
     try:
         ser = serial.Serial('COM6', 115200)
@@ -20,7 +21,6 @@ def serial_reader():
         if 'ser' in locals() and ser.is_open:
             ser.close()
 
-# Function to process serial data and save to database
 def process_serial_data(data_line):
     try:
         with app.app_context():
@@ -62,7 +62,6 @@ def process_serial_data(data_line):
     except Exception as e:
         print(f"Data processing error: {e}")
 
-# Flask routes
 @app.route('/data', methods=['GET'])
 def get_data():
     try:
@@ -83,6 +82,22 @@ def delete_all_data():
             num_rows_deleted = db.session.query(DataSet).delete()
             db.session.commit()
             return jsonify({"message": f"Deleted {num_rows_deleted} rows from DataSet table."}), 200
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
+
+@app.route('/predict', methods=['GET'])
+def predict_flooding():
+    try:
+        date = request.args.get('date')
+        if not date:
+            return jsonify({"message": "Date parameter is required"}), 400
+
+        predictedData, actualData, dateArray = generate(date)
+        return jsonify({
+            "predict": predictedData,
+            "actual": actualData,
+            "dates": dateArray
+        }), 200
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 

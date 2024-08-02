@@ -8,7 +8,7 @@ const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch('http://127.0.0.1:5000/data') // Замените на ваш эндпоинт
+      fetch('http://127.0.0.1:5000/data') 
         .then(response => response.json())
         .then(data => {
           setData(data.data);
@@ -18,7 +18,7 @@ const DataProvider = ({ children }) => {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 5000); // Обновлять данные каждые 10 секунд
+    const intervalId = setInterval(fetchData, 5000); 
 
     return () => clearInterval(intervalId);
   }, []);

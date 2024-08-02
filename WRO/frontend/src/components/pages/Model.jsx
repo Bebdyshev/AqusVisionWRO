@@ -9,6 +9,10 @@ function Model() {
   const [latestHeight, setLatestHeight] = useState(null);
   const [yaw, setYaw] = useState(null);
   const [velocity, setVelocity] = useState(null);
+  const [predictedData, setPredictData] = useState([]);
+  const [actualData, setActualData] = useState([]);
+  const [dateData, setDateData] = useState([]);
+  const [selectedDate, setSelectedDate] = useState('');
 
   useEffect(() => {
     const lastData = data[data.length - 1];
@@ -22,6 +26,24 @@ function Model() {
     setVelocity(velocity);
   }, [data]);
 
+  const fetchPredictionData = (date) => {
+    fetch(`http://127.0.0.1:5000/predict?date=${date}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        setPredictData(data.predict);
+        setActualData(data.actual);
+        setDateData(data.date);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  };
+
+  const handleDateChange = (e) => {
+    const date = e.target.value;
+    setSelectedDate(date);
+    fetchPredictionData(date);
+  };
+
   return (
     <div className="main-container">
       <div className="left-container">
@@ -31,6 +53,11 @@ function Model() {
       </div>
       <div className='right-container'>
         <Model33D latestHeight={latestHeight} velocity={velocity} yaw={yaw} />
+        <input 
+          type="date" 
+          value={selectedDate} 
+          onChange={handleDateChange} 
+        />
         <span>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae dolores sint, ea soluta quo molestias architecto aliquid fugit fugiat explicabo placeat nesciunt repudiandae perspiciatis, non nam dicta debitis vero eius.
         </span>
