@@ -65,13 +65,13 @@ function Model33D(props) {
   const buoyModelRef = useRef();
   const waterModelRef = useRef();
 
-  const scaleWaterModel = [1000, 1000, 10]; // Масштаб модели воды
-  const adjustedBuoyPosition = [10, 15 + props.latestHeight / 100, 10]; // Позиция буя
-  const adjustedWaterPosition = [10, props.latestHeight / 100, 10]; // Позиция воды
+  const scaleWaterModel = [1000, 1000, 10];
+  const adjustedBuoyPosition = [10, 15 + props.latestHeight / 100, 10]; 
+  const adjustedWaterPosition = [10, props.latestHeight / 100, 10];
 
   useEffect(() => {
     if (buoyModelRef.current) {
-      buoyModelRef.current.renderOrder = 1; // Установить порядок отрисовки
+      buoyModelRef.current.renderOrder = 1; 
     }
   }, [buoyModelRef]);
 

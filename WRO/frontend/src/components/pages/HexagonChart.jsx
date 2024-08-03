@@ -1,19 +1,19 @@
-// BuoyChart.js
 import React, { useContext } from 'react';
 import { Radar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 import { DataContext } from './../../DataContext';
-import { NoBlending } from 'three';
 
 Chart.register(...registerables);
 
 function BuoyChart(props) {
   const label = props.label;
   const dataY = props.dataY;
-  const rgb = props.rgb;
   const data = useContext(DataContext);
+  const latestData = data[data.length - 1];
 
+  console.log(latestData);
+  
   const completeData = {
     labels: [
       'Air temperature',
@@ -27,14 +27,22 @@ function BuoyChart(props) {
     datasets: [
       {
         label: 'My Dataset',
-        data: [50, 59, 90, 81, 56, 55, 40],
+        data: [
+          latestData.airTemperature, 
+          latestData.soilTemperature, 
+          latestData.snowDepth, 
+          latestData.precipitation, 
+          latestData.velocity, 
+          latestData.waterLevel, 
+          latestData.humidity
+        ],
         fill: true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgb(255, 99, 132)',
         pointBackgroundColor: 'rgb(255, 99, 132)',
         pointBorderColor: 'white',
         pointHoverBackgroundColor: 'white',
-        pointHoverBorderColor: 'rgb(255, 99, 132)'
+        pointHoverBorderColor: 'rgb(255, 99, 132)',
       }
     ],
   };
@@ -52,13 +60,18 @@ function BuoyChart(props) {
       }
     },
     plugins: {
-      legend: false,
-    },
+      legend: {
+        display: false
+      },
+      tooltip: {
+        enabled: false
+      }
+    }
   };
 
   return (
-    <div className="buoy-chart"  style={{ width: "85%", height: "300px"}}>
-      <div className="chart-container" style={{ width: "100%", height: "100%"}}>
+    <div className="buoy-chart" style={{ width: "100%", height: "300px", boxShadow: "rgba(100, 100, 111, 0.2) 0px 2px 10px 0px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div className="chart-container" style={{ width: "100%", height: "100%" }}>
         <Radar data={completeData} options={options} />
       </div>
     </div>

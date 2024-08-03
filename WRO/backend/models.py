@@ -2,7 +2,7 @@ from config import db
 
 class DataSet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    buoy_id = db.Column(db.Integer, nullable=False)
+    buoy_id = db.Column(db.Integer, nullable=False)  
     time = db.Column(db.DateTime, nullable=False)
     height = db.Column(db.Float, nullable=False)
     latitude = db.Column(db.Float, nullable=False)
@@ -32,4 +32,20 @@ class DataSet(db.Model):
             "pitch": self.pitch,
             "roll": self.roll,
             "yaw": self.yaw,
+        }
+
+class GroundBuoy(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    ground_id = db.Column(db.Integer, nullable=False)
+    time = db.Column(db.DateTime, nullable=False)
+    snowDepth = db.Column(db.Float, nullable=False)
+    precipitation = db.Column(db.Float, nullable=False)
+    soilTemperature = db.Column(db.Float, nullable=False)
+    airTemperature = db.Column(db.Float, nullable=False)
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "location": self.location
         }

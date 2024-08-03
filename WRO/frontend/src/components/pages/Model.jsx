@@ -66,7 +66,7 @@ function Model() {
       </div>
       <div className='modelContainer'>
         <input className='inputDate' type="date" value={selectedDate} onChange={handleDateChange} />
-        <div>
+        <div className='AIcccchaart'>
         <AIChart 
             dataActual={actualData} 
             dataPredicted={predictedData} 
@@ -79,7 +79,7 @@ function Model() {
       <div className='right-container'>
         <Model33D latestHeight={latestHeight} velocity={velocity} yaw={yaw} />
         <div className="buoyDescription">
-          Velocity: {velocity} mps "              "
+          Velocity: {velocity} mps 
           Pitch: {pitch}° 
           Roll: {roll}° 
           Yaw: {yaw}°

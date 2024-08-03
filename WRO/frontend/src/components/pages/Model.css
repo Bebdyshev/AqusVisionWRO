@@ -34,13 +34,13 @@
   border-radius: 15px;
   margin: 10px;
   margin-top: 5%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .right-container span {
   padding: 11px;
 }
 
-/* Настройки для иконки выбора даты */
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
@@ -59,7 +59,15 @@ p {
 }
 
 .hexagonChart {
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: white;
-  padding: 5px;
+  margin-top: 10%;
+}
+
+.AIcccchaart {
+  padding: 10px;
+  margin-top: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
