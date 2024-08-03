@@ -144,13 +144,16 @@ def generate(date_str):
 
     # Reshape actual_values for comparison
     actual_values = test_y[day]
-    
-    prediction = predicted_values_denormalized
-    actual_data = actual_values
+    actual_values_reshaped = actual_values.reshape(-1, 1)
+    actual_values_denormalized = water_level_scaler.inverse_transform(actual_values_reshaped)
+
+    prediction = predicted_values_denormalized.flatten().tolist()
+    actual_data = actual_values_denormalized.flatten().tolist()
     date_array = []
 
     for i in range(10):
         date = start_date + timedelta(days=i)
         date_array.append(date.strftime('%d %b %Y'))
-
+    
+    
     return prediction, actual_data, date_array

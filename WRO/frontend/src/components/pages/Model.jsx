@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import Model3D from './Model3D';
 import Model33D from './Model33D';
 import { DataContext } from './../../DataContext';
-import './Model.css'; // Подключаем CSS для стилизации
+import './Model.css'; 
 import AIChart from './AIChart';
 import HexagonChart from './HexagonChart';
+import Progress from './Progress';
 
 function Model() {
   const data = useContext(DataContext);
@@ -22,7 +23,6 @@ function Model() {
     fetch(`http://127.0.0.1:5000/predict?date=${date}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         setPredictData(data.predict);
         setActualData(data.actual);
         setDateData(data.dates);
@@ -63,6 +63,7 @@ function Model() {
     <div className="main-container">
       <div className="left-container">
         <Model3D latestHeight={latestHeight} />
+        <Progress loss={5} accuracy={99} mape={25}/>
       </div>
       <div className='modelContainer'>
         <input className='inputDate' type="date" value={selectedDate} onChange={handleDateChange} />

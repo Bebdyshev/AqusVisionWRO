@@ -1,19 +1,48 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Radar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import 'chartjs-adapter-date-fns';
-import { DataContext } from './../../DataContext';
 
 Chart.register(...registerables);
 
-function BuoyChart(props) {
-  const label = props.label;
-  const dataY = props.dataY;
-  const data = useContext(DataContext);
-  const latestData = data[data.length - 1];
+function HexagonChart() {
+  const [dataGround, setDataGround] = useState([]);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null); // Для отображения ошибок
 
-  console.log(latestData);
-  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [groundResponse, buoyResponse] = await Promise.all([
+          fetch('http://127.0.0.1:5000/data_ground'),
+          fetch('http://127.0.0.1:5000/data')
+        ]);
+
+        if (!groundResponse.ok || !buoyResponse.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const groundData = await groundResponse.json();
+        const buoyData = await buoyResponse.json();
+
+        setDataGround(groundData.data);
+        setData(buoyData.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError(error.message);
+      }
+    };
+
+    fetchData();
+
+    const intervalId = setInterval(fetchData, 5000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const latestData = data[data.length - 1] || {};
+  const latestGroundData = dataGround[dataGround.length - 1] || {};
+
   const completeData = {
     labels: [
       'Air temperature',
@@ -28,13 +57,13 @@ function BuoyChart(props) {
       {
         label: 'My Dataset',
         data: [
-          latestData.airTemperature, 
-          latestData.soilTemperature, 
-          latestData.snowDepth, 
-          latestData.precipitation, 
-          latestData.velocity, 
-          latestData.waterLevel, 
-          latestData.humidity
+          latestGroundData.airTemperature || 0,
+          latestGroundData.soilTemperature || 0,
+          latestGroundData.snowDepth || 0,
+          latestGroundData.precipitation || 0,
+          latestData.velocity || 0,
+          latestData.height || 0,
+          latestGroundData.humidity || 0
         ],
         fill: true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -69,8 +98,12 @@ function BuoyChart(props) {
     }
   };
 
+  if (error) {
+    return <div>Error: {error}</div>; // Отображаем ошибку
+  }
+
   return (
-    <div className="buoy-chart" style={{ width: "100%", height: "300px", boxShadow: "rgba(100, 100, 111, 0.2) 0px 2px 10px 0px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div className="buoy-chart" style={{ width: "360px", height: "370px", borderRadius: "5px", boxShadow: "rgba(100, 100, 111, 0.2) 0px 2px 10px 0px", display: "flex", alignItems: "center", justifyContent: "center" }}>
       <div className="chart-container" style={{ width: "100%", height: "100%" }}>
         <Radar data={completeData} options={options} />
       </div>
@@ -78,4 +111,4 @@ function BuoyChart(props) {
   );
 }
 
-export default BuoyChart;
+export default HexagonChart;

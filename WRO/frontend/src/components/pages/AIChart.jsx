@@ -65,7 +65,7 @@ function AIChart({ dataActual = [], dataPredicted = [], dataDate = [], width = '
     };
 
     return (
-        <div className="buoy-chart" style={{ width: "93%", height: "500px"}}>
+        <div className="buoy-chart" style={{ width: "93%", height: "580px", borderRadius: "15px", overflow: "hidden"}}>
             <div className="chart-container" style={{ width: "100%", height: "100%"}}>
                 <Line data={{ datasets: chartData }} options={options} />
             </div>
