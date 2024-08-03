@@ -4,7 +4,6 @@ import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 import { DataContext } from './../../DataContext';
-import './BuoyChart.css';
 
 Chart.register(...registerables);
 

@@ -42,11 +42,11 @@ function Model3D(props) {
   const adjustedWaterPosition = [-100, -2 + props.latestHeight / 100, 50]; 
 
   return (
-    <div style={{ width: '500px', height: '500px' }}>
+    <div style={{ width: '360px', height: '300px', backgroundColor: "white", margin: "7px", borderRadius: "5px",  boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}}>
       <Canvas>
         <ambientLight intensity={1} />
         <directionalLight position={[-50, -100, -100]} intensity={1} />
-        <PerspectiveCamera makeDefault position={[-100, 20, -10]} rotation={[0, 0, 0]} zoom={1.25} />
+        <PerspectiveCamera makeDefault position={[-100, 20, -10]} rotation={[0, 0, 0]} zoom={1.5} />
         <OrbitControls target={[-100, 0, 50]} maxPolarAngle={Math.PI / 2} enableZoom={false} enablePan={false} enableRotate={false} />
 
         <group>

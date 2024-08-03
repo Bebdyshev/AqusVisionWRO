@@ -1,32 +1,65 @@
 .main-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    height: 92.9vh; 
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 92.9vh;
+}
+
+.left-container, .right-container {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  background-color: rgb(255, 255, 255);
+}
+
+.modelContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  border-radius: 10px;
+  width: 50%;
+  overflow: hidden;
+}
+
+.inputDate {
+  width: 80%;
+  height: 20px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background-color: #333;
+  color: white;
+  border-radius: 15px;
+  margin: 10px;
+  margin-top: 5%;
+}
+
+.right-container span {
+  padding: 11px;
+}
+
+/* Настройки для иконки выбора даты */
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.buoyDescription {
+  background-color: #333;
+  padding: 10px;
+  margin: 5px;
+  color: white;
+  border-radius: 7px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.hexagonChart {
   
-  .left-container, .right-container {
-    width: 25%;
-    height: 100%;
-    display: flex;
-    flex-direction: column; 
-    background-color: rgb(239, 239, 239);
-  }
-  
-  .modelContainer {
-    flex: 1; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px; 
-    overflow: hidden;
-  }
-  
-  .right-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .right-container span {
-    padding: 11px; 
-  }
+  background-color: white;
+  padding: 5px;
+}

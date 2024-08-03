@@ -76,7 +76,7 @@ function Model33D(props) {
   }, [buoyModelRef]);
 
   return (
-    <div style={{ width: '360px', height: '225px', margin: '7px', background: 'white', padding: '3px'}}>
+    <div style={{ width: '360px', height: '225px', margin: '7px', boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}}>
       <Canvas>
         <ambientLight intensity={1} />
         <directionalLight position={[-10, 20, 10]} intensity={1} />

@@ -4,8 +4,8 @@ import random
 def generate(date_str):
     start_date = datetime.strptime(date_str, '%Y-%m-%d')
 
-    prediction = [12, 12, 233, 34, 54]
-    actual_data = [11, 14, 225, 32, 52]
+    prediction = [random.randint(10, 250) for _ in range(10)]
+    actual_data = [random.randint(10, 250) for _ in range(10)]
     date_array = []
 
     for i in range(10):
