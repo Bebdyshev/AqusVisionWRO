@@ -10,7 +10,7 @@ function usePageLoader() {
       setLoading(true);
       const timer = setTimeout(() => {
         setLoading(false);
-      }, 500); // Adjust the timeout as needed
+      }, 1000); 
 
       return () => clearTimeout(timer);
     }

@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.profile {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    border-radius: 5px;
+}
+
+.contact_page {
+    margin-top: 1.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contacts {
+    display: flex;
+    justify-content: space-between;
+    width: 86%;
+}
+
+p {
+    
+}

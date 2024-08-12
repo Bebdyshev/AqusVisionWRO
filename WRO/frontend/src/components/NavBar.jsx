@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <nav>
       <Link to="/" className="title">
-        Website
+        Happy Nation
       </Link>
       <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
         <span></span>
@@ -16,9 +16,6 @@ function Navbar() {
         <span></span>
       </div>
       <ul className={menuOpen ? "open" : ""}>
-        <li>
-          <NavLink to="/about">About</NavLink>
-        </li>
         <li>
           <NavLink to="/statistics">Statistics</NavLink>
         </li>
