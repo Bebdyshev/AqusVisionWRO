@@ -55,3 +55,20 @@ class GroundBuoy(db.Model):
             "airTemperature": self.airTemperature,
             "humidity": self.humidity,
         }
+    
+
+class GroundStation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    buoy_id = db.Column(db.Integer, nullable=False)
+    time = db.Column(db.DateTime, nullable=False)
+    aboveGroundLevel = db.Column(db.Float, nullable=False)
+    underGroundLevel = db.Column(db.Float, nullable=False)
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "buoy_id": self.buoy_id,
+            "time": self.time,
+            "aboveGroundLevel": self.aboveGroundLevel,
+            "underGroundLevel": self.underGroundLevel,
+        }

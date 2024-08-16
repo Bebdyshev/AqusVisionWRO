@@ -3,7 +3,7 @@ import threading
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from config import app, db
-from models import DataSet, GroundBuoy
+from models import DataSet, GroundBuoy, GroundStation
 from datetime import datetime
 from aiModel import generate
 import json
@@ -11,7 +11,7 @@ import random
 
 def serial_reader():
     try:
-        ser = serial.Serial('COM6', 115200)
+        ser = serial.Serial('COM3', 115200)
         while True:
             data_line = ser.readline().decode('utf-8').strip()
             process_serial_data(data_line)
@@ -29,7 +29,6 @@ def process_serial_data(data_line):
             current_time = datetime.now()
 
             if buoy_id == 1:
-                # Водяной буй
                 ph = float(data_parts[2])
                 height = float(data_parts[3])
                 latitude = float(data_parts[4])
@@ -59,7 +58,6 @@ def process_serial_data(data_line):
                 )
 
             elif buoy_id == 2:
-                # Наземный буй
                 snow_depth = float(data_parts[2])
                 precipitation = float(data_parts[3])
                 soil_temp = float(data_parts[4])
@@ -74,6 +72,16 @@ def process_serial_data(data_line):
                     soilTemperature=soil_temp,
                     airTemperature=air_temp,
                     humidity=humidity
+                )
+            elif buoy_id == 3:
+                above_ground_level = float(data_parts[2])
+                under_ground_level = float(data_parts[3])
+
+                new_data = GroundStation(
+                    buoy_id=buoy_id,
+                    time=current_time,
+                    aboveGroundLevel=above_ground_level,
+                    underGroundLevel=under_ground_level
                 )
             
             db.session.add(new_data)
@@ -96,6 +104,15 @@ def get_data_ground():
         groundBuoyData = GroundBuoy.query.all()
         json_groundBuoyData = [data.to_json() for data in groundBuoyData]
         return jsonify({"data": json_groundBuoyData})
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
+
+@app.route('/data_ground_station', methods=['GET'])
+def get_data_ground_station():
+    try:
+        groundStationData = GroundStation.query.all()
+        json_groundStationData = [data.to_json() for data in groundStationData]
+        return jsonify({"data": json_groundStationData})
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
