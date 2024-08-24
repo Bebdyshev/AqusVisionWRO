@@ -1,6 +1,6 @@
 import serial
 import threading
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from config import app, db
 from models import DataSet, GroundBuoy, GroundStation
@@ -8,6 +8,7 @@ from datetime import datetime
 from aiModel import generate
 import json
 import random
+import os
 
 def serial_reader():
     try:
@@ -118,7 +119,58 @@ def get_data_ground_station():
 
 @app.route('/create_data', methods=['POST'])
 def create_data():
-    return jsonify({"message": "This endpoint is disabled."}), 403
+    try:
+        data = request.json
+        buoy_id = int(data['buoy_id'])
+        current_time = datetime.now()
+
+        if buoy_id == 1:
+            new_data = DataSet(
+                buoy_id=buoy_id,
+                time=current_time,
+                height=float(data['height']),
+                latitude=float(data['latitude']),
+                longitude=float(data['longitude']),
+                pressure=float(data['pressure']),
+                temp=float(data['temp']),
+                density=float(data['density']),
+                ph=float(data['ph']),
+                velocity=float(data['velocity']),
+                pitch=float(data['pitch']),
+                roll=float(data['roll']),
+                yaw=float(data['yaw'])
+            )
+
+        elif buoy_id == 2:
+            new_data = GroundBuoy(
+                buoy_id=buoy_id,
+                time=current_time,
+                snowDepth=float(data['snowDepth']),
+                precipitation=float(data['precipitation']),
+                soilTemperature=float(data['soilTemperature']),
+                airTemperature=float(data['airTemperature']),
+                humidity=float(data['humidity'])
+            )
+
+        elif buoy_id == 3:
+            new_data = GroundStation(
+                buoy_id=buoy_id,
+                time=current_time,
+                aboveGroundLevel=float(data['aboveGroundLevel']),
+                underGroundLevel=float(data['underGroundLevel'])
+            )
+
+        else:
+            return jsonify({"message": "Invalid buoy_id"}), 400
+
+        db.session.add(new_data)
+        db.session.commit()
+
+        return jsonify({"message": "Data added successfully"}), 201
+
+    except Exception as e:
+        return jsonify({"message": f"Data creation error: {str(e)}"}), 500
+
 
 @app.route('/delete_all_data', methods=['DELETE'])
 def delete_all_data():
@@ -146,6 +198,15 @@ def predict_flooding():
         }), 200
     except Exception as e:
         return jsonify({"message": str(e)}), 500
+
+frontend_folder = os.path.join(os.getcwd(), "..", "frontend", "dist")
+
+@app.route("/", defaults={"filename": ""})
+@app.route("/<path:filename>")
+def index(filename):
+    if not filename:
+        filename = "index.html"
+    return send_from_directory(frontend_folder, filename)
 
 if __name__ == '__main__':
     with app.app_context():

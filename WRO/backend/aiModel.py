@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-import sklearn
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 import pandas as pd
@@ -9,7 +8,6 @@ import keras
 from keras import layers, regularizers
 from keras.models import load_model
 from keras.utils import custom_object_scope, get_custom_objects
-import matplotlib.pyplot as plt
 
 
 class ReduceMeanLayer(layers.Layer):

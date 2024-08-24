@@ -7,13 +7,7 @@ body {
   
   #root {
     visibility: hidden; /* Скрыть содержимое */
+    height: 830px;
   }
-  
-  .loader {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999; 
-  }
+
   
