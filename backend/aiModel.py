@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 from sklearn.preprocessing import MinMaxScaler
 
-dataFrame = pd.read_csv('aiDatas\data_full_updated.csv')
+dataFrame = pd.read_csv('data_full_updated.csv')
 dataFrame['Date'] = pd.to_datetime(dataFrame['Date'])
 dataFrame.set_index('Date', inplace=True)
 
