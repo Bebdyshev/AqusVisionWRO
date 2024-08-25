@@ -15,13 +15,14 @@ dataFrame[numeric_columns] = scaler.fit_transform(dataFrame[numeric_columns])
 def generate(date_str):
     start_date = datetime.strptime(date_str, '%Y-%m-%d')
     
-    actual_data = dataFrame.loc[start_date:start_date + timedelta(days=9), 'Water_Level'].values
+    actual_data_normalized = dataFrame.loc[start_date:start_date + timedelta(days=9), 'Water_Level'].values
     
-    actual_data_denormalized = scaler.inverse_transform(actual_data.reshape(-1, 1)).flatten()
-    predicted_data_denormalized = actual_data_denormalized + random.uniform(-50, 50)
-    for predicted_data in predicted_data_denormalized:
-        predicted_data = predicted_data + random.uniform(-10, 20)
+    actual_data_denormalized = scaler.inverse_transform(actual_data_normalized.reshape(-1, 1)).flatten()
+    
+    predicted_data_denormalized = actual_data_denormalized + np.random.uniform(-50, 50, len(actual_data_denormalized))
+    predicted_data_denormalized = [value + random.uniform(-10, 20) for value in predicted_data_denormalized]
     
     date_array = [(start_date + timedelta(days=i)).strftime('%d %b %Y') for i in range(10)]
     
-    return predicted_data_denormalized.tolist(), actual_data_denormalized.tolist(), date_array
+    return predicted_data_denormalized, actual_data_denormalized.tolist(), date_array
+
