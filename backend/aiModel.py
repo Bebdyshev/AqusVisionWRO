@@ -81,7 +81,10 @@ def generate(date_str):
     # Дополнительный шум для предсказаний
     prediction_with_extra_noise = add_noise(predicted_values_denormalized, noise_level=0.15)
     
-    prediction = prediction_with_extra_noise.flatten().tolist()
+    # Генерация случайного числа для уменьшения предсказаний
+    random_decrement = 32.173
+    prediction = (prediction_with_extra_noise - random_decrement).flatten().tolist()
+    
     actual_data = modified_actual_values.flatten().tolist()
     date_array = [(start_date + timedelta(days=i)).strftime('%d %b %Y') for i in range(10)]
     
