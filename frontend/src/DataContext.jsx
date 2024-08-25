@@ -8,7 +8,7 @@ const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch('aquavision-p82h.onrender.com/data') 
+      fetch('https://aquavision-wttc.onrender.com/data') 
         .then(response => response.json())
         .then(data => {
           setData(data.data);
