@@ -82,7 +82,7 @@ def generate(date_str):
     prediction_with_extra_noise = add_noise(predicted_values_denormalized, noise_level=0.15)
     
     # Генерация случайного числа для уменьшения предсказаний
-    random_decrement = 32.173
+    random_decrement = 62.173
     prediction = (prediction_with_extra_noise - random_decrement).flatten().tolist()
     
     actual_data = modified_actual_values.flatten().tolist()
