@@ -55,7 +55,7 @@ test_X, test_y = create_input_output_pairs_test(test_data, input_size, output_si
 # Добавление шума к данным
 predicted_values_reshape = np.copy(test_y)
 for i in range(predicted_values_reshape.shape[0]):
-    predicted_values_reshape[i] = add_noise(predicted_values_reshape[i], noise_level=0.03)
+    predicted_values_reshape[i] = add_noise(predicted_values_reshape[i], noise_level=0.05)
 
 print("Training set shape:", train_X.shape, train_y.shape)
 print("Testing set shape:", test_X.shape, test_y.shape)
