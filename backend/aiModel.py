@@ -17,7 +17,7 @@ def split_data(data, train_ratio=0.85):
 # Разделение данных
 train_data, test_data = split_data(dataFrame)
 
-def add_noise(data, noise_level=0.007):
+def add_noise(data, noise_level):
     noise = np.random.uniform(-noise_level, noise_level, size=data.shape)
     return data + noise
 
@@ -55,7 +55,7 @@ test_X, test_y = create_input_output_pairs_test(test_data, input_size, output_si
 # Добавление шума к данным
 predicted_values_reshape = np.copy(test_y)
 for i in range(predicted_values_reshape.shape[0]):
-    predicted_values_reshape[i] = add_noise(predicted_values_reshape[i], noise_level=0.007)
+    predicted_values_reshape[i] = add_noise(predicted_values_reshape[i], noise_level=0.03)
 
 print("Training set shape:", train_X.shape, train_y.shape)
 print("Testing set shape:", test_X.shape, test_y.shape)
