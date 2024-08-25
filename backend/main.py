@@ -199,14 +199,14 @@ def predict_flooding():
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
-frontend_folder = os.path.join(os.getcwd(), "..", "frontend", "dist")
+# frontend_folder = os.path.join(os.getcwd(), "..", "frontend", "dist")
 
-@app.route("/", defaults={"filename": ""})
-@app.route("/<path:filename>")
-def index(filename):
-    if not filename:
-        filename = "index.html"
-    return send_from_directory(frontend_folder, filename)
+# @app.route("/", defaults={"filename": ""})
+# @app.route("/<path:filename>")
+# def index(filename):
+#     if not filename:
+#         filename = "index.html"
+#     return send_from_directory(frontend_folder, filename)
 
 if __name__ == '__main__':
     with app.app_context():

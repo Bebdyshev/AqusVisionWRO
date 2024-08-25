@@ -1,0 +1,28 @@
+.allfather {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.homepage {
+    width: 80%;
+}
+
+.water-buoy, .ground-buoy {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    display: flex;
+}
+
+.water-buoy {
+    margin-top: 6%;
+}
+
+img {
+    width: 225px;
+    height: 225px;
+    border-radius: 5px;
+}

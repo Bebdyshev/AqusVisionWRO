@@ -8,7 +8,7 @@ const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch('http://127.0.0.1:5000/data') 
+      fetch('aquavision-p82h.onrender.com/data') 
         .then(response => response.json())
         .then(data => {
           setData(data.data);

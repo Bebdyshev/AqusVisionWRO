@@ -14,8 +14,8 @@ function HexagonChart() {
     const fetchData = async () => {
       try {
         const [groundResponse, buoyResponse] = await Promise.all([
-          fetch('http://127.0.0.1:5000/data_ground'),
-          fetch('http://127.0.0.1:5000/data')
+          fetch('https://aquavision-p82h.onrender.com/data_ground'),
+          fetch('https://aquavision-p82h.onrender.com/data')
         ]);
 
         if (!groundResponse.ok || !buoyResponse.ok) {

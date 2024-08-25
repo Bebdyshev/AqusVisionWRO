@@ -20,7 +20,7 @@ function Model() {
   const [selectedDate, setSelectedDate] = useState('');
 
   const fetchPredictionData = (date) => {
-    fetch(`http://127.0.0.1:5000/predict?date=${date}`)
+    fetch(`https://aquavision-p82h.onrender.com/predict?date=${date}`)
       .then(response => response.json())
       .then(data => {
         setPredictData(data.predict);
