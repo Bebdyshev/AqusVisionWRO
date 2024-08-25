@@ -4,7 +4,7 @@ import pandas as pd
 import math
 
 # Чтение данных и масштабирование
-dataFrame = pd.read_csv('aiDatas\data_full_updated.csv')
+dataFrame = pd.read_csv('data_full_updated.csv')
 dataFrame['Date'] = pd.to_datetime(dataFrame['Date'])
 dataFrame.set_index('Date', inplace=True)
 
