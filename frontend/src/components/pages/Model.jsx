@@ -18,9 +18,9 @@ function Model() {
   const [actualData, setActualData] = useState([]);
   const [dateData, setDateData] = useState([]);
   const [selectedDate, setSelectedDate] = useState('');
-
+  const baseURL = `${window.location.protocol}//${window.location.host}`;
   const fetchPredictionData = (date) => {
-    fetch(`https://aquavision-wttc.onrender.com/predict?date=${date}`)
+    fetch(baseURL + `/predict?date=${date}`)
       .then(response => response.json())
       .then(data => {
         setPredictData(data.predict);

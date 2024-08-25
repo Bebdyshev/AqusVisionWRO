@@ -5,10 +5,11 @@ const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const [data, setData] = useState([]);
+  const baseURL = `${window.location.protocol}//${window.location.host}`;
 
   useEffect(() => {
     const fetchData = () => {
-      fetch('https://aquavision-wttc.onrender.com/data') 
+      fetch(baseURL + '/data') 
         .then(response => response.json())
         .then(data => {
           setData(data.data);

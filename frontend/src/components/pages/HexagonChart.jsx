@@ -9,13 +9,14 @@ function HexagonChart() {
   const [dataGround, setDataGround] = useState([]);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null); // Для отображения ошибок
+  const baseURL = `${window.location.protocol}//${window.location.host}`;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [groundResponse, buoyResponse] = await Promise.all([
-          fetch('https://aquavision-wttc.onrender.com/data_ground'),
-          fetch('https://aquavision-wttc.onrender.com/data')
+          fetch(baseURL + '/data_ground'),
+          fetch(baseURL + '/data')
         ]);
 
         if (!groundResponse.ok || !buoyResponse.ok) {
