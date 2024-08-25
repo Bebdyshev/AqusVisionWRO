@@ -75,7 +75,10 @@ def generate(date_str):
     predicted_values_denormalized = predicted_values_reshape[day]
     actual_values = test_y[day]
     
-    prediction = predicted_values_denormalized.flatten().tolist()
+    # Добавление дополнительного шума для создания случайности
+    prediction_with_extra_noise = add_noise(predicted_values_denormalized, noise_level=0.01)
+    
+    prediction = prediction_with_extra_noise.flatten().tolist()
     actual_data = actual_values.flatten().tolist()
     date_array = [(start_date + timedelta(days=i)).strftime('%d %b %Y') for i in range(10)]
     
