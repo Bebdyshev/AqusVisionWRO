@@ -17,6 +17,9 @@ function Navbar() {
       </div>
       <ul className={menuOpen ? "open" : ""}>
         <li>
+          <NavLink to="/flood-simulation/" target="_blank" rel="noopener noreferrer">Flood simulation</NavLink>
+        </li>
+        <li>
           <NavLink to="/statistics">Statistics</NavLink>
         </li>
         <li>
