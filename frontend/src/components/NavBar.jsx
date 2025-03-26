@@ -20,7 +20,7 @@ function Navbar() {
           <NavLink to="/flood-simulation/" target="_blank" rel="noopener noreferrer">Flood simulation</NavLink>
         </li>
         <li>
-          <NavLink to="/fire-simulation/" target="_blank" rel="noopener noreferrer">Fire simulation</NavLink>
+          <NavLink to="/fire-simulation/">Fire simulation</NavLink>
         </li>
         <li>
           <NavLink to="/statistics">Statistics</NavLink>
