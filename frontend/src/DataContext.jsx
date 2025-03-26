@@ -9,7 +9,7 @@ const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch(baseURL + '/data') 
+      fetch('http://127.0.0.1:5000/data') 
         .then(response => response.json())
         .then(data => {
           setData(data.data);
@@ -19,7 +19,7 @@ const DataProvider = ({ children }) => {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 5000); 
+    const intervalId = setInterval(fetchData, 1000); 
 
     return () => clearInterval(intervalId);
   }, []);

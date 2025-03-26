@@ -20,7 +20,7 @@ function Model() {
   const [selectedDate, setSelectedDate] = useState('');
   const baseURL = `${window.location.protocol}//${window.location.host}`;
   const fetchPredictionData = (date) => {
-    fetch(baseURL + `/predict?date=${date}`)
+    fetch(`http://127.0.0.1:5000/predict?date=${date}`)
       .then(response => response.json())
       .then(data => {
         setPredictData(data.predict);
@@ -86,7 +86,6 @@ function Model() {
           Yaw: {yaw}°
         </div>
         <div className='hexagonChart'>
-          <HexagonChart/>
         </div>
       </div>
     </div>
