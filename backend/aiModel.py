@@ -2,26 +2,26 @@ from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
 
-# Чтение данных
+# Reading data
 dataFrame = pd.read_csv('data_full_updated.csv')
 dataFrame['Date'] = pd.to_datetime(dataFrame['Date'])
 dataFrame.set_index('Date', inplace=True)
 
-# Функция для разделения данных на обучающий и тестовый наборы
+# Function to split data into training and test sets
 def split_data(data, train_ratio=0.85):
     train_size = int(len(data) * train_ratio)
     train_data = data[:train_size]
     test_data = data[train_size:]
     return train_data, test_data
 
-# Разделение данных
+# Splitting data
 train_data, test_data = split_data(dataFrame)
 
 def add_noise(data, noise_level):
     noise = np.random.uniform(-noise_level, noise_level, size=data.shape)
     return data + noise
 
-# Функция для создания входных и выходных пар
+# Function to create input and output pairs
 def create_input_output_pairs(data, input_size, output_size):
     X, y = [], []
     for i in range(len(data) - input_size - output_size + 1):
