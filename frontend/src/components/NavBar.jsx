@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <nav>
       <Link to="/" className="title">
-        Happy Nation
+        Disaster Vision
       </Link>
       <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
         <span></span>
