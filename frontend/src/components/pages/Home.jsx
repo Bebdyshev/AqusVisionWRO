@@ -7,9 +7,9 @@ function Home() {
       <div className="homepage">
         <div className="hero-section">
           <h1 className="main-title">
-            Welcome to the <span className="highlight">River Monitoring and Fire Prediction System</span>
+            Welcome to the <span className="highlight">AI-Powered Environmental Monitoring System</span>
           </h1>
-          <p className="subtitle">Advanced technology for environmental monitoring and disaster prevention</p>
+          <p className="subtitle">Advanced AI technology for river monitoring, flood prediction, and fire spread forecasting</p>
         </div>
 
         <div className="features-grid">
@@ -28,11 +28,29 @@ function Home() {
               </svg>
             </div>
             <div className="feature-content">
-              <h2 className="feature-title">River Monitoring</h2>
+              <h2 className="feature-title">River Monitoring System</h2>
               <p className="feature-text">
-                An autonomous device that smoothly moves along the river using the energy of its built-in hydrogenerator. 
-                Equipped with advanced sensors for temperature, pH, and pressure, it provides continuous real-time monitoring 
-                of water levels, temperature, acidity, and velocity through radio signal transmission.
+                Real-time monitoring system equipped with advanced sensors for temperature, pH, pressure, and water levels. 
+                Provides continuous data collection and analysis for comprehensive river health assessment.
+              </p>
+            </div>
+          </div>
+
+          <div className="feature-card flood-buoy">
+            <div className="feature-icon flood-icon">
+              <svg className="flood-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 90 L90 90 L80 70 L20 70 Z" fill="currentColor"/>
+                <path d="M20 70 L80 70 L70 50 L30 50 Z" fill="currentColor"/>
+                <path d="M30 50 L70 50 L60 30 L40 30 Z" fill="currentColor"/>
+                <path d="M40 30 L60 30 L50 10 L50 10 Z" fill="currentColor"/>
+                <circle cx="50" cy="50" r="5" fill="currentColor"/>
+              </svg>
+            </div>
+            <div className="feature-content">
+              <h2 className="feature-title">AI Flood Prediction</h2>
+              <p className="feature-text">
+                Advanced AI system combining GAN for realistic satellite imagery of flooded areas and GRU neural networks 
+                for precise 10-day water level predictions. Enables accurate flood forecasting and early warning systems.
               </p>
             </div>
           </div>
@@ -47,32 +65,11 @@ function Home() {
               </svg>
             </div>
             <div className="feature-content">
-              <h2 className="feature-title">Fire Spread Prediction</h2>
+              <h2 className="feature-title">AI Fire Spread Forecasting</h2>
               <p className="feature-text">
-                Advanced AI-powered system that analyzes environmental conditions, wind patterns, and terrain data 
-                to predict potential fire spread patterns. This helps emergency services prepare and respond 
-                effectively to wildfire threats.
-              </p>
-            </div>
-          </div>
-
-          <div className="feature-card ground-buoy">
-            <div className="feature-icon station-icon">
-              <svg className="station-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <rect x="20" y="60" width="60" height="20" fill="currentColor"/>
-                <rect x="35" y="40" width="30" height="20" fill="currentColor"/>
-                <rect x="45" y="20" width="10" height="20" fill="currentColor"/>
-                <circle cx="50" cy="15" r="5" fill="currentColor"/>
-                <path d="M30 80 L70 80" stroke="currentColor" strokeWidth="2"/>
-                <path d="M40 60 L40 80 M60 60 L60 80" stroke="currentColor" strokeWidth="2"/>
-              </svg>
-            </div>
-            <div className="feature-content">
-              <h2 className="feature-title">Ground Station</h2>
-              <p className="feature-text">
-                A high-tech device installed on the river bank that collects comprehensive environmental data including 
-                soil temperature, air humidity, and precipitation levels. This data is crucial for accurate flood prediction 
-                and enables rapid response to environmental changes.
+                CNN AutoEncoder-based system for accurate fire spread prediction. Analyzes environmental conditions, 
+                terrain data, and historical patterns to forecast wildfire behavior and help emergency services 
+                prepare effective response strategies.
               </p>
             </div>
           </div>
