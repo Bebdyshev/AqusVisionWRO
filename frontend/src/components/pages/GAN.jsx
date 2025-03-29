@@ -57,7 +57,7 @@ function GanPage() {
           inputs: [],
           output: null
         });
-        alert("Please upload one of the following files: 1.tf, 2.tf, or 3.tf");
+        alert("Please upload .tf file");
       }
     }
   };
@@ -81,7 +81,7 @@ function GanPage() {
             />
             <label htmlFor="file-input" className="file-label">
               <i className="fas fa-cloud-upload-alt"></i>
-              <span>{selectedFile ? selectedFile.name : 'Choose a file (1.tf, 2.tf, 3.tf)'}</span>
+              <span>{selectedFile ? selectedFile.name : 'Choose a file .tf file'}</span>
             </label>
           </div>
         </div>
