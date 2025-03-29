@@ -29,6 +29,9 @@ function Navbar() {
           <NavLink to="/model">Model</NavLink>
         </li>
         <li>
+          <NavLink to="/gan">GAN</NavLink>
+        </li>
+        <li>
           <NavLink to="/contact">Contact</NavLink>
         </li>
       </ul>
